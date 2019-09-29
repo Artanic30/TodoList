@@ -8,4 +8,4 @@ class Events(models.Model):
     priority = models.IntegerField(default=0)
     detail = models.TextField(max_length=300)
     expire_time = models.DateTimeField()
-    done = models.BooleanField()
+    is_done = models.BooleanField()
