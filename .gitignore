@@ -4,3 +4,5 @@ Backend/.idea/
 Backend/venv/
 
 *.pyc
+
+fontend/.idea/
