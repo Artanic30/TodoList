@@ -6,3 +6,7 @@ Backend/venv/
 *.pyc
 
 fontend/.idea/
+
+Backend/TodoList/todo/migrations/
+
+*.sqlite3

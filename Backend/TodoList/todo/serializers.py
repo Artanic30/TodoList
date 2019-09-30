@@ -8,21 +8,11 @@ class EventsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Events
         fields = '__all__'
+        read_only_fields = ['id']
 
-    def create(self, validated_data):
-        # check if the expire_time is already passed
-        expire_time = validated_data.get('expire_time')
-        if expire_time <= timezone.now():
+    @staticmethod
+    def validate_title(self, value):
+        if value <= timezone.now():
             raise serializers.ValidationError('Expire time must be in the future!')
-        event = Events.objects.create(**validated_data)
-        event.save()
-        return event
+        return value
 
-    def update(self, instance, validated_data):
-        # check if the expire_time is already passed
-        expire_time = validated_data.get('expire_time')
-        if expire_time <= timezone.now():
-            raise serializers.ValidationError('Expire time must be in the future!')
-        instance = validated_data
-        instance.save()
-        return instance
