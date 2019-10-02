@@ -1,0 +1,20 @@
+.header {
+  background: dimgrey;
+  height: 4rem;
+}
+
+.title {
+  color: aliceblue;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  background: dimgrey!important;
+  color: white!important;
+  border-color: dimgrey!important;
+  font-size: 2rem!important;
+}
