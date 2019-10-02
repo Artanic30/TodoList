@@ -1,7 +1,12 @@
 from .models import Events
 from .serializers import EventsSerializers
 from rest_framework import viewsets, status
-from rest_framework.mixins import ListModelMixin, CreateModelMixin, UpdateModelMixin, DestroyModelMixin
+from rest_framework.mixins import (
+    ListModelMixin,
+    CreateModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    RetrieveModelMixin)
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
 # Create your views here.
@@ -11,7 +16,8 @@ class EventsViewSet(viewsets.GenericViewSet,
                     ListModelMixin,
                     CreateModelMixin,
                     UpdateModelMixin,
-                    DestroyModelMixin):
+                    DestroyModelMixin,
+                    RetrieveModelMixin):
     serializer_class = EventsSerializers
     queryset = Events.objects.all()
 

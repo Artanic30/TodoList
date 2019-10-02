@@ -29,3 +29,9 @@ class TestCase(DjangoTestCase):
             event.save()
             result['history' if i % 2 == 0 else 'ongoing'].append(event)
         return result
+
+    def createDate(self, time='future'):
+        date = datetime.now().replace(
+            year=datetime.now().year + (1 if time == 'future' else - 1),
+            tzinfo=timezone.utc)
+        return date
