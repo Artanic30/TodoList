@@ -16,8 +16,8 @@ class EventsTests(TestCase):
         client = APIClient(enforce_csrf_checks=True)
         response = client.get(url, decode=True)
         self.assertEqual(response.status_code, 200)
-        for pk in range(len(response.data)):
-            self.assertEqual(response.data[pk], EventsSerializers(self.events['ongoing'][pk]).data)
+        for pk in range(len(response.data['results'])):
+            self.assertEqual(response.data['results'][pk], EventsSerializers(self.events['ongoing'][pk]).data)
 
     def test_post_events(self):
         url = '/api/'
