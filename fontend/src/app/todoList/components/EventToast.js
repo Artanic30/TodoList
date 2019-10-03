@@ -21,6 +21,8 @@ class EventToast extends React.Component {
         if (pri) {
           if (pri > 4) {
             pri = 4
+          } else if (pri <= 0) {
+            pri = 1
           }
           const reflection = [
             {},
@@ -56,7 +58,7 @@ class EventToast extends React.Component {
 
       DeleteEvent = () => {
         Provider.delete(`${store.baseApi}/${this.state.event.id}/`).then(response => {
-          console.log('delete event!')
+          alert('Event Deleted!');
           this.setState({
             event: null
           })
@@ -69,7 +71,6 @@ class EventToast extends React.Component {
             'priority': this.state.event.priority + 1
           };
           Provider.patch(`${store.baseApi}/${this.state.event.id}/`, data).then(response => {
-            console.log('priority added!')
             this.setState({
               event: {...this.state.event, 'priority': this.state.event.priority + 1}
             })
@@ -79,7 +80,6 @@ class EventToast extends React.Component {
             'priority': this.state.event.priority - 1
           };
           Provider.patch(`${store.baseApi}/${this.state.event.id}/`, data).then(response => {
-            console.log('priority added!')
             this.setState({
               event: {...this.state.event, 'priority': this.state.event.priority - 1}
             })
@@ -92,7 +92,7 @@ class EventToast extends React.Component {
             'is_done': true
         };
         Provider.patch(`${store.baseApi}/${this.state.event.id}/`, data).then(response => {
-            console.log('Mark resolved!')
+            alert('Mark resolved!');
             this.setState({
               event: null
             })

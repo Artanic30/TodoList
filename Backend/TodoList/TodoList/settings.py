@@ -57,7 +57,7 @@ ROOT_URLCONF = 'TodoList.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates/build")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,3 +106,8 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+print BASE_DIR
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "templates/build/static"),
+]

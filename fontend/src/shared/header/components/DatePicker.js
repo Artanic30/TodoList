@@ -20,11 +20,7 @@ class ControlledRangePicker extends React.Component {
 
   componentDidMount() {
     let now = new Date();
-    let exist_date = null;
-    if (store.editEvent) {
-      exist_date = moment(store.editEvent.expire_time, "YYYY-MM-DD")
-    }
-    this.setState({ value: [moment(now, "YYYY-MM-DD"), exist_date]})
+    this.setState({ value: [moment(now, "YYYY-MM-DD"), null]})
   }
 
   handleChange = value => {

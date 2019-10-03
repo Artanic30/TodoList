@@ -28,4 +28,17 @@ class EventsViewSet(viewsets.GenericViewSet,
     @list_route(methods=['get'])
     def history(self, request):
         # return the resolved events
-        return Response(self.serializer_class(self.queryset.filter(is_done=True).order_by('id'), many=True).data, status=status.HTTP_200_OK)
+        return Response(self.serializer_class(self.queryset.filter(is_done=True).order_by('id'),
+                                              many=True).data, status=status.HTTP_200_OK)
+
+    @list_route(methods=['get'])
+    def priority(self, request):
+        # return the resolved events
+        return Response(self.serializer_class(self.queryset.filter(is_done=False).order_by('-priority'),
+                                              many=True).data, status=status.HTTP_200_OK)
+
+    @list_route(methods=['get'])
+    def expire(self, request):
+        # return the resolved events
+        return Response(self.serializer_class(self.queryset.filter(is_done=False).order_by('expire_time'),
+                                              many=True).data, status=status.HTTP_200_OK)

@@ -20,12 +20,13 @@ class Header extends React.Component {
     let data = {
       'title': this.FormRefs[0].current.value,
       'detail': this.FormRefs[1].current.value,
-      'priority': this.FormRefs[2].current.value,
-      'expire_time': store.newEvent.expire_date + 'z',
+      'priority': Number(this.FormRefs[2].current.value.slice(1, 2)),
+      'expire_time': store.newEvent.expire_date.slice(0, -6),
       'is_done': false
     };
     Provider.post(`${store.baseApi}/`, data).then(response => {
-      console.log(response)
+      alert('New Event Created!!');
+      window.location.reload();
     })
   };
 
