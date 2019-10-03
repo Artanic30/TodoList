@@ -24,7 +24,7 @@ class Header extends React.Component {
       'expire_time': store.newEvent.expire_date,
       'is_done': false
     };
-    Provider.post('127.0.0.1:8000', data).then(response => {
+    Provider.post(`${store.baseApi}/api/`, data).then(response => {
       console.log(response)
     })
   };

@@ -1,5 +1,5 @@
 .header {
-  background: dimgrey;
+  background: #cb5647;
   height: 4rem;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .button {
-  background: dimgrey!important;
+  background: #cb5647!important;
   color: white!important;
   font-size: 2rem!important;
   border: 0!important;

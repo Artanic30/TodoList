@@ -6,13 +6,11 @@ class TodoListStore {
     expire_date: ''
   };
 
-  @action update_date = (date) => {
-    this.newEvent.expire_date = date;
-  }
+  @observable baseApi = 'http://127.0.0.1:8000';
 
   @action update_date = (date) => {
     this.newEvent.expire_date = date;
-  }
+  };
 }
 
 export default new TodoListStore();

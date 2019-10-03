@@ -2,27 +2,33 @@ import './styles/index.css'
 import React from 'react';
 import Header from '../../shared/header/header'
 import { Row, Col, Button, Jumbotron, Accordion, Card } from 'react-bootstrap'
+import SideNav from './containers/SideNav'
 
 class TodoList extends React.Component {
-      constructor (props) {
-        super(props);
-        this.state = {}
-      }
+      state = {
+        current: 'Today'
+      };
+
+      changeDisplay = (cate) => {
+        console.log(cate)
+        this.setState({
+          current: cate
+        })
+      };
 
       render () {
         return (
           <React.Fragment>
-            <Header />
-            <Jumbotron>
-              <h1>Hello, world!</h1>
-              <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
-              </p>
-              <p>
-                <Button variant="primary">Learn more</Button>
-              </p>
-            </Jumbotron>
+            <Row>
+              <Col><Header /></Col>
+            </Row>
+            <Row>
+              <Col md={{ span: 3 }} className={'nav-color padding-top'}>
+                <SideNav changeDisplay={this.changeDisplay} />
+              </Col>
+              <Col md={{ span: 6 }} className={'padding-top'}>2</Col>
+              <Col md={{ span: 3 }} className={'nav-color padding-top'} />
+            </Row>
           </React.Fragment>
         )
       }
