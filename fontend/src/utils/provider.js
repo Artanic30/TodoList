@@ -1,13 +1,12 @@
 import axios from 'axios';
-import {computed} from 'mobx';
-import {getCookie} from './cookie';
+import cookie from 'react-cookies'
 
 const Provider = {
-    @computed get provider() {
+    provider() {
         return axios.create({
             withCredentials: true,
             headers: {
-                'X-CSRFToken': getCookie('csrftoken'), // todo
+                'X-CSRFToken': cookie.load('csrftoken'),
             },
         })
     },
