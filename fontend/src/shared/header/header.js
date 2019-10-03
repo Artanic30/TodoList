@@ -1,12 +1,20 @@
 import React from 'react';
 import '../styles/header.css'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
-
+import EventForm from './components/newEvent'
 
 
 class Header extends React.Component {
   state = {
     show: false
+  };
+  FormRefs = ['title', 'detail', 'expire_time', 'priority'].map((name) => {
+    name = React.createRef();
+    return name
+  });
+
+  submitForms = () => {
+    console.log(this.FormRefs[2])
   };
 
   handleClose = () => {
@@ -31,16 +39,23 @@ class Header extends React.Component {
           <Col md={{ span: 2, offset: 5 }} className={'align-center'}>
             <Button className={'button'} variant="light" onClick={this.handleShow}>+</Button>
           </Col>
-          <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal
+            show={this.state.show}
+            onHide={this.handleClose}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered>
             <Modal.Header closeButton>
               <Modal.Title>Add new event</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+              <EventForm refs={this.FormRefs} />
+            </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={this.handleClose}>
+              <Button variant="primary" onClick={this.submitForms}>
                 Save Changes
               </Button>
             </Modal.Footer>

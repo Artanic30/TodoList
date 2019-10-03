@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import AppRouter from './router'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 
 ReactDOM.render(<AppRouter />, document.getElementById('root'));
 

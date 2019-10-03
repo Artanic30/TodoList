@@ -15,6 +15,7 @@
 .button {
   background: dimgrey!important;
   color: white!important;
-  border-color: dimgrey!important;
   font-size: 2rem!important;
+  border: 0!important;
+  box-shadow: None!important;
 }
