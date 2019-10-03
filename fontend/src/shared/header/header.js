@@ -2,19 +2,31 @@ import React from 'react';
 import '../styles/header.css'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import EventForm from './components/newEvent'
+import Provider from '../../utils/provider'
+import store from '../store/todoListStore'
 
 
 class Header extends React.Component {
   state = {
     show: false
   };
-  FormRefs = ['title', 'detail', 'expire_time', 'priority'].map((name) => {
+  FormRefs = ['title', 'detail', 'priority'].map((name) => {
     name = React.createRef();
     return name
   });
 
   submitForms = () => {
-    console.log(this.FormRefs[2])
+    this.handleClose();
+    let data = {
+      'title': this.FormRefs[0].current.value,
+      'detail': this.FormRefs[1].current.value,
+      'priority': this.FormRefs[3].current.value,
+      'expire_time': store.newEvent.expire_date,
+      'is_done': false
+    };
+    Provider.post('127.0.0.1:8000', data).then(response => {
+      console.log(response)
+    })
   };
 
   handleClose = () => {
@@ -56,7 +68,7 @@ class Header extends React.Component {
                 Close
               </Button>
               <Button variant="primary" onClick={this.submitForms}>
-                Save Changes
+                Submit
               </Button>
             </Modal.Footer>
           </Modal>

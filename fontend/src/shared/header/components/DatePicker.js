@@ -20,13 +20,12 @@ class ControlledRangePicker extends React.Component {
 
   componentDidMount() {
     let now = new Date()
-    console.log(moment(now, "YYYY-MM-DD"))
     this.setState({ value: [moment(now, "YYYY-MM-DD"), null]})
   }
 
   handleChange = value => {
-    store.commit()
     this.setState({ value });
+    store.update_date(value[1].format())
   };
 
   render() {
