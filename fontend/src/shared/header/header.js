@@ -20,11 +20,11 @@ class Header extends React.Component {
     let data = {
       'title': this.FormRefs[0].current.value,
       'detail': this.FormRefs[1].current.value,
-      'priority': this.FormRefs[3].current.value,
-      'expire_time': store.newEvent.expire_date,
+      'priority': this.FormRefs[2].current.value,
+      'expire_time': store.newEvent.expire_date + 'z',
       'is_done': false
     };
-    Provider.post(`${store.baseApi}/api/`, data).then(response => {
+    Provider.post(`${store.baseApi}/`, data).then(response => {
       console.log(response)
     })
   };

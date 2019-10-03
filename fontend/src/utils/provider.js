@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookie from 'react-cookies'
 
 const Provider = {
-    provider() {
+    get provider() {
         return axios.create({
             withCredentials: true,
             headers: {
@@ -33,6 +33,10 @@ const Provider = {
 
     delete(...args) {
         return this.provider.delete(...args)
+    },
+
+    put(...args) {
+        return this.provider.put(...args)
     },
 };
 

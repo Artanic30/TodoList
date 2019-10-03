@@ -18,3 +18,35 @@
 .eliminate-focus:focus {
   outline: None!important;
 }
+
+.padding-left {
+  padding-left: 2rem;
+}
+
+.margin-top {
+  margin-top: 2rem;
+}
+
+.event-width {
+  max-width: 90% !important;
+}
+
+.padding-zero {
+  padding: 0!important;
+}
+
+.bottom-zero {
+  padding-bottom: 0!important;
+}
+
+.detail-height {
+  min-height: 4rem;
+}
+
+.sub-title {
+  font-size: 15px;
+}
+
+.card-padding {
+  padding: 0.5rem 0 0.5rem 4px!important;
+}
