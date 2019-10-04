@@ -35,7 +35,6 @@ class ShowEvents extends React.Component {
 
       InitData = () => {
         if (store.current === 'History') {
-          console.log(5)
             Provider.get(`${store.baseApi}/history/`).then(response => {
               this.setState({
                 current: store.current,
@@ -43,7 +42,6 @@ class ShowEvents extends React.Component {
               })
             })
           } else if (store.current === 'Sorted by Priority') {
-          console.log(6)
             Provider.get(`${store.baseApi}/priority/`).then(response => {
               this.setState({
                 current: store.current,
@@ -51,7 +49,6 @@ class ShowEvents extends React.Component {
               })
             })
           } else if (store.current === 'Sorted by Expire Date') {
-          console.log(7)
             Provider.get(`${store.baseApi}/expire/`).then(response => {
               this.setState({
                 current: store.current,
@@ -59,7 +56,6 @@ class ShowEvents extends React.Component {
               })
             })
           } else {
-          console.log(8)
             this.RequestEvents(`${store.baseApi}/`)
           }
       };
