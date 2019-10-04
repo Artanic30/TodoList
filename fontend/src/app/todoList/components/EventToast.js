@@ -91,12 +91,16 @@ class EventToast extends React.Component {
         let data = {
             'is_done': true
         };
-        Provider.patch(`${store.baseApi}/${this.state.event.id}/`, data).then(response => {
+        if (store.current === 'History') {
+          alert("It's already done!")
+        } else {
+          Provider.patch(`${store.baseApi}/${this.state.event.id}/`, data).then(response => {
             alert('Mark resolved!');
             this.setState({
               event: null
             })
           })
+        }
       };
 
       render() {

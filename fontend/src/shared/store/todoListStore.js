@@ -1,10 +1,12 @@
-import {observable, action} from "mobx";
+import { observable, action } from "mobx";
 
 
 class TodoListStore {
   @observable newEvent = {
     expire_date: ''
   };
+
+  @observable current = 'Ongoing';
 
   @observable editEvent = null;
 
@@ -20,6 +22,11 @@ class TodoListStore {
 
   @action remove_event = () => {
     this.editEvent = null;
+  };
+
+  @action update_current = (cate) => {
+    this.current = cate;
+    console.log('store updated', cate)
   }
 }
 

@@ -2,6 +2,7 @@ import '../styles/index.css'
 import React from 'react';
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { Icon } from 'antd'
+import store from '../../../shared/store/todoListStore'
 
 class SideNav extends React.Component {
       render () {
@@ -14,7 +15,7 @@ class SideNav extends React.Component {
                     action
                     eventKey={'Ongoing'}
                     className={'eliminate-focus'}
-                    onClick={() => {this.props.changeDisplay('Ongoing')}}>
+                    onClick={() => {store.update_current('Ongoing')}}>
                     <Row>
                       <Col md={{ span: 4 }}><Icon type="calendar" /></Col>
                       <Col md={{ span: 8 }}>Ongoing</Col>
@@ -24,7 +25,7 @@ class SideNav extends React.Component {
                     action
                     eventKey={'History'}
                     className={'eliminate-focus'}
-                    onClick={() => {this.props.changeDisplay('History')}}>
+                    onClick={() => {store.update_current('History')}}>
                     <Row>
                       <Col md={{ span: 4 }}><Icon type="carry-out" /></Col>
                       <Col md={{ span: 8 }}>History</Col>

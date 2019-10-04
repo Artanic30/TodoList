@@ -107,7 +107,6 @@ REST_FRAMEWORK = {
 
 STATIC_URL = '/static/'
 
-print BASE_DIR
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates/build/static"),
 ]

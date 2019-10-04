@@ -6,7 +6,9 @@ import DropDown from "../components/DropDown";
 import EventForm from "../../../shared/header/components/newEvent";
 import store from "../../../shared/store/todoListStore";
 import Provider from "../../../utils/provider";
+import {observer} from 'mobx-react';
 
+@observer
 class ShowEvents extends React.Component {
       state = {
         current: '',
@@ -25,27 +27,34 @@ class ShowEvents extends React.Component {
       });
 
       componentDidMount() {
-        if (this.state.current === 'History') {
+        this.setState({
+          current: store.current
+        });
+        this.InitData();
+      };
+
+      InitData = () => {
+        if (store.current === 'History') {
           console.log(5)
             Provider.get(`${store.baseApi}/history/`).then(response => {
               this.setState({
-                current: this.state.current,
+                current: store.current,
                 events: response.data
               })
             })
-          } else if (this.state.current === 'Sorted by Priority') {
+          } else if (store.current === 'Sorted by Priority') {
           console.log(6)
             Provider.get(`${store.baseApi}/priority/`).then(response => {
               this.setState({
-                current: this.state.current,
+                current: store.current,
                 events: response.data
               })
             })
-          } else if (this.state.current === 'Sorted by Expire Date') {
+          } else if (store.current === 'Sorted by Expire Date') {
           console.log(7)
             Provider.get(`${store.baseApi}/expire/`).then(response => {
               this.setState({
-                current: this.state.current,
+                current: store.current,
                 events: response.data
               })
             })
@@ -55,55 +64,17 @@ class ShowEvents extends React.Component {
           }
       };
 
+
       RequestEvents = (api) => {
         Provider.get(api).then(response => {
             this.setState({
-              current: this.props.current,
+              current: store.current,
               events: response.data.results,
               prePage: response.data.previous,
               nextPage: response.data.next,
               count: response.data.count
             })
           })
-      };
-
-      shouldComponentUpdate(nextProps, nextState, nextContext) {
-        console.log(nextProps, nextState, nextContext);
-        if (nextState.current !== this.state.current) {
-          if (nextState.current === 'Sorted by Priority') {
-            console.log(3)
-            Provider.get(`${store.baseApi}/priority/`).then(response => {
-              this.setState({
-                current: nextState.current,
-                events: response.data
-              })
-            })
-          } else if (nextState.current === 'Sorted by Expire Date') {
-            console.log(4)
-            Provider.get(`${store.baseApi}/expire/`).then(response => {
-              this.setState({
-                current: nextState.current,
-                events: response.data
-              })
-            })
-          }
-        } else {
-          if (nextProps.current !== this.state.current) {
-            if (nextProps.current === 'History') {
-              console.log(1)
-              Provider.get(`${store.baseApi}/history/`).then(response => {
-                this.setState({
-                  current: nextProps.current,
-                  events: response.data
-                })
-              })
-            } else if (nextProps.current === 'Ongoing') {
-              console.log(2)
-              this.RequestEvents(`${store.baseApi}/`)
-            }
-          }
-        }
-        return true
       };
 
       EditDetail = (id) => {
@@ -154,9 +125,7 @@ class ShowEvents extends React.Component {
       };
 
       handleSorted = (method) => {
-        this.setState({
-          current: 'Sorted by ' + method
-        })
+        store.update_current(method)
       };
 
       render() {
@@ -180,10 +149,17 @@ class ShowEvents extends React.Component {
             </Pagination.Item>,
           );
         }
+        if (this.state.current !== store.current) {
+          this.InitData();
+          this.setState({
+            current: store.current
+          });
+        }
+        let current = store.current;
         return (
           <React.Fragment>
             <Row className={'padding-left padding-top'}>
-              <Col><h2>{ this.state.current }</h2></Col>
+              <Col><h2>{ current }</h2></Col>
             </Row>
             <Row className={'padding-left padding-top'}>
               <Col md={{ span: 4 }}><h5>Events</h5></Col>
@@ -192,7 +168,7 @@ class ShowEvents extends React.Component {
               </Col>
             </Row>
             { events }
-            { this.state.current === 'Ongoing' ?
+            { current === 'Ongoing' ?
               <Row className={'padding-top'}><Col className={'align-center'}><Pagination size="sm">{ items }</Pagination></Col></Row>
              : <Row className={'padding-top'} />
             }

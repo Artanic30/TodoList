@@ -1,6 +1,7 @@
 import '../styles/index.css'
 import React from 'react';
 import { Dropdown } from 'react-bootstrap'
+import store from '../../../shared/store/todoListStore'
 
 
 class DropDown extends React.Component {
@@ -11,8 +12,8 @@ class DropDown extends React.Component {
           Sorted by
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={this.props.handleSort.bind(this, 'Priority')}>Priority</Dropdown.Item>
-          <Dropdown.Item onClick={this.props.handleSort.bind(this, 'Expire Date')}>Expire Date</Dropdown.Item>
+          <Dropdown.Item onClick={() => {store.update_current('Sorted by Priority')}}>Priority</Dropdown.Item>
+          <Dropdown.Item onClick={() => {store.update_current('Sorted by Expire Date')}}>Expire Date</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     )
