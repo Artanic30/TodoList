@@ -10,3 +10,5 @@ fontend/.idea/
 Backend/TodoList/todo/migrations/
 
 *.sqlite3
+
+frontend/.idea/
