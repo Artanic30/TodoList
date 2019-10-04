@@ -10,7 +10,7 @@ class TodoListStore {
 
   @observable editEvent = null;
 
-  @observable baseApi = `http://${location.hostname}/api`;
+  @observable baseApi = `http://${window.location.hostname}/api`;
 
   @action update_date = (date) => {
     this.newEvent.expire_date = date;
